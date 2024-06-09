@@ -27,7 +27,7 @@ diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ntp/NewTabPageL
          assert mMvTilesContainerLayout != null;
  
 -        int maxRows = 2;
-+        int maxRows = 4;
++        int maxRows = 0;
  
          mMostVisitedTilesCoordinator =
                  new MostVisitedTilesCoordinator(
