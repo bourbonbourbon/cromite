@@ -16,19 +16,19 @@ diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ntp/NewTabPageL
 @@ -110,7 +110,7 @@ public class NewTabPageLayout extends LinearLayout {
       */
      private boolean mHasShownView;
- 
+
 -    private boolean mSearchProviderHasLogo = true;
 +    private boolean mSearchProviderHasLogo = false;
      private boolean mSearchProviderIsGoogle;
      private boolean mShowingNonStandardGoogleLogo;
- 
+
 @@ -499,7 +499,7 @@ public class NewTabPageLayout extends LinearLayout {
              boolean searchProviderIsGoogle) {
          assert mMvTilesContainerLayout != null;
- 
+
 -        int maxRows = 2;
-+        int maxRows = 0;
- 
++        int maxRows = 4;
+
          mMostVisitedTilesCoordinator =
                  new MostVisitedTilesCoordinator(
 @@ -733,7 +733,7 @@ public class NewTabPageLayout extends LinearLayout {
@@ -38,7 +38,7 @@ diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ntp/NewTabPageL
 -        mSearchProviderHasLogo = hasLogo;
 +        mSearchProviderHasLogo = false;
          mSearchProviderIsGoogle = isGoogle;
- 
+
          boolean isSearchProviderMarginUpdated =
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/suggestions/mostvisited/MostVisitedSitesBridge.java b/chrome/android/java/src/org/chromium/chrome/browser/suggestions/mostvisited/MostVisitedSitesBridge.java
 --- a/chrome/android/java/src/org/chromium/chrome/browser/suggestions/mostvisited/MostVisitedSitesBridge.java
@@ -49,9 +49,9 @@ diff --git a/chrome/android/java/src/org/chromium/chrome/browser/suggestions/mos
       */
 -    public static final int MAX_TILE_COUNT = 12;
 +    public static final int MAX_TILE_COUNT = 12 * 2;
- 
+
      private long mNativeMostVisitedSitesBridge;
- 
+
 diff --git a/chrome/browser/engagement/important_sites_util.cc b/chrome/browser/engagement/important_sites_util.cc
 --- a/chrome/browser/engagement/important_sites_util.cc
 +++ b/chrome/browser/engagement/important_sites_util.cc
@@ -61,7 +61,7 @@ diff --git a/chrome/browser/engagement/important_sites_util.cc b/chrome/browser/
  // bookmarks on site engagement > 0, sort, and trim to kMaxBookmarks.
 -static const int kMaxBookmarks = 5;
 +static const int kMaxBookmarks = 4 * 4 + 2;
- 
+
  // We need this to be a macro, as the histogram macros cache their pointers
  // after the first call, so when we change the uma name we check fail if we're
 diff --git a/components/history/core/browser/top_sites_impl.h b/components/history/core/browser/top_sites_impl.h
@@ -69,11 +69,11 @@ diff --git a/components/history/core/browser/top_sites_impl.h b/components/histo
 +++ b/components/history/core/browser/top_sites_impl.h
 @@ -40,7 +40,7 @@ class TopSitesImplTest;
  struct SitesAndQueriesRequest;
- 
+
  // How many top sites to store in the cache.
 -static constexpr size_t kTopSitesNumber = 10;
 +static constexpr size_t kTopSitesNumber = 4 * 4 + 2;
- 
+
  // This class allows requests for most visited urls on any thread. All other
  // methods must be invoked on the UI thread. All mutations to internal state
 --

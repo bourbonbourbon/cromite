@@ -1,0 +1,3 @@
+checkout release.yml for secret keys and target platform
+just check out workflows folder
+enable actions
